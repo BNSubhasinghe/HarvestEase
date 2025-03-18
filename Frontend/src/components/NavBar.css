@@ -1,0 +1,34 @@
+.navbar {
+    background-color: #004d00; /* Green background */
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .navbar-logo {
+    font-size: 1.5rem;
+    color: yellow;
+  }
+  
+  .navbar-links {
+    list-style: none;
+    display: flex;
+  }
+  
+  .navbar-links li {
+    margin: 0 1rem;
+  }
+  
+  .navbar-links li a {
+    text-decoration: none;
+    color: white;
+  }
+  
+  .navbar-contact a {
+    background-color: yellow;
+    color: green;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+  }
+  
