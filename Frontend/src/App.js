@@ -5,11 +5,15 @@ import Register from './components/Register';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard'; // Your protected component
 import PrivateRoute from './components/PrivateRoute';
+import NavBar from './components/NavBar';  // Import NavBar
 
 function App() {
   const [data, setData] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const API_URL = process.env.REACT_APP_API_URL;
+  const [loading, setLoading] = useState(true);  // Add a loading state
+  const [error, setError] = useState(null);  // Add an error state
+
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -24,6 +28,12 @@ function App() {
       .catch(error => {
         console.log("Error fetching user data:", error);
         setIsAuthenticated(false);
+        setData(response.data.message);
+        setLoading(false);
+      })
+      .catch(error => {
+        setError("There was an error fetching the data!");
+        setLoading(false);
       });
     } else {
       setIsAuthenticated(false);
@@ -52,6 +62,12 @@ function App() {
             <h1>Please log in</h1>
             <Link to="/login">Login</Link> or <Link to="/register">Register</Link>
           </div>
+        {loading ? (
+          <p>Loading...</p>
+        ) : error ? (
+          <p>{error}</p>
+        ) : (
+          <p>{data}</p>
         )}
       </header>
 
