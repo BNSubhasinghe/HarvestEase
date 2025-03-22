@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Route, Routes, Link } from 'react-router-dom'; // Remove BrowserRouter
@@ -13,6 +14,10 @@ function App() {
   const API_URL = process.env.REACT_APP_API_URL;
   const [loading, setLoading] = useState(true);  // Add a loading state
   const [error, setError] = useState(null);  // Add an error state
+=======
+// Frontend/src/App.js
+
+
 
 
   useEffect(() => {
@@ -29,11 +34,9 @@ function App() {
         console.log("Error fetching user data:", error);
         setIsAuthenticated(false);
         setData(response.data.message);
-        setLoading(false);
       })
       .catch(error => {
-        setError("There was an error fetching the data!");
-        setLoading(false);
+        console.log("There was an error fetching the data!", error);
       });
     } else {
       setIsAuthenticated(false);
@@ -51,6 +54,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+
         {isAuthenticated ? (
           <div>
             <h2>Welcome, {data?.email || 'User'}</h2>
@@ -69,6 +73,9 @@ function App() {
         ) : (
           <p>{data}</p>
         )}
+=======
+        <p>{data ? data : "Loading..."}</p>
+
       </header>
 
       <Routes>
